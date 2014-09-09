@@ -29,11 +29,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         physicsBody = SKPhysicsBody(edgeLoopFromRect: frame)
         physicsWorld.gravity = CGVector(dx:0, dy:0)
         self.physicsWorld.contactDelegate = self
-        physicsBody.friction = 0.0
+        physicsBody!.friction = 0.0
     }
     
     func createBall() -> SKNode {
-        let radius = 20.0
+        let radius = CGFloat(20.0)
         
         let ball = SKSpriteNode(imageNamed: "ball.png")
         ball.size = CGSize(width: radius*2, height: radius*2)
@@ -41,14 +41,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         ball.zPosition = 1
         
         ball.physicsBody = SKPhysicsBody(circleOfRadius: radius)
-        ball.physicsBody.dynamic = true
-        ball.physicsBody.allowsRotation = false
-        ball.physicsBody.restitution = 1.0
-        ball.physicsBody.friction = 0.0
-        ball.physicsBody.linearDamping = 0.0
-        ball.physicsBody.categoryBitMask = ballCategory
-        ball.physicsBody.collisionBitMask = worldCategory | brickCategory | paddleCategory
-        ball.physicsBody.contactTestBitMask = worldCategory | brickCategory | paddleCategory
+        ball.physicsBody!.dynamic = true
+        ball.physicsBody!.allowsRotation = false
+        ball.physicsBody!.restitution = 1.0
+        ball.physicsBody!.friction = 0.0
+        ball.physicsBody!.linearDamping = 0.0
+        ball.physicsBody!.categoryBitMask = ballCategory
+        ball.physicsBody!.collisionBitMask = worldCategory | brickCategory | paddleCategory
+        ball.physicsBody!.contactTestBitMask = worldCategory | brickCategory | paddleCategory
         
         return ball
     }
@@ -61,12 +61,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         paddle.zPosition = 2
 
         paddle.physicsBody = SKPhysicsBody(rectangleOfSize: CGSize(width: side, height: side/3))
-        paddle.physicsBody.restitution = 0.1
-        paddle.physicsBody.friction = 0.4
-        paddle.physicsBody.dynamic = false
-        paddle.physicsBody.categoryBitMask = paddleCategory
-        paddle.physicsBody.collisionBitMask = ballCategory
-        paddle.physicsBody.contactTestBitMask = ballCategory
+        paddle.physicsBody!.restitution = 0.1
+        paddle.physicsBody!.friction = 0.4
+        paddle.physicsBody!.dynamic = false
+        paddle.physicsBody!.categoryBitMask = paddleCategory
+        paddle.physicsBody!.collisionBitMask = ballCategory
+        paddle.physicsBody!.contactTestBitMask = ballCategory
         return paddle
     }
     
@@ -78,7 +78,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         var even = true
         for row in 0...3 {
-            for i in 1..numBricks {
+            for i in 1...numBricks {
                 let brick = createBrick(side, index: i, y: startY+side*row/2, even: even)
                 addChild(brick)
             }
@@ -115,13 +115,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         brick.zPosition = 1
         
         brick.physicsBody = SKPhysicsBody(rectangleOfSize: CGSize(width: side, height: side/2))
-        brick.physicsBody.dynamic = false
-        brick.physicsBody.restitution = 1.0
-        brick.physicsBody.friction = 0.0
+        brick.physicsBody!.dynamic = false
+        brick.physicsBody!.restitution = 1.0
+        brick.physicsBody!.friction = 0.0
 
-        brick.physicsBody.categoryBitMask = brickCategory
-        brick.physicsBody.collisionBitMask = ballCategory
-        brick.physicsBody.contactTestBitMask = ballCategory
+        brick.physicsBody!.categoryBitMask = brickCategory
+        brick.physicsBody!.collisionBitMask = ballCategory
+        brick.physicsBody!.contactTestBitMask = ballCategory
 
         return brick
     }
@@ -133,13 +133,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         ball = createBall()
         addChild(ball)
-        ball.physicsBody.applyImpulse(CGVector(dx:10, dy:10))
+        ball.physicsBody!.applyImpulse(CGVector(dx:10, dy:10))
         
         paddle = createPaddle()
         addChild(paddle)
     }
     
-    override func touchesMoved(touches: NSSet!, withEvent event: UIEvent!) {
+    override func touchesMoved(touches: NSSet, withEvent event: UIEvent) {
         let touch : AnyObject! = touches.anyObject()
         var location = touch.locationInNode(self)
 
@@ -148,9 +148,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func brickFrom(contact: SKPhysicsContact) -> SKNode {
         if ( contact.bodyA.categoryBitMask & brickCategory ) == brickCategory {
-           return contact.bodyA.node
+           return contact.bodyA.node!
         }
-        return contact.bodyB.node
+        return contact.bodyB.node!
     }
     
     func didBeginContact(contact: SKPhysicsContact) {

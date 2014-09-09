@@ -417,6 +417,7 @@
 				EE512BBF194D07A6007096DB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		EE512BC0194D07A6007096DB /* Build configuration list for PBXNativeTarget "SwifterNoidTests" */ = {
 			isa = XCConfigurationList;
@@ -425,6 +426,7 @@
 				EE512BC2194D07A6007096DB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
