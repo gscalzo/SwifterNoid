@@ -365,7 +365,7 @@
 		EE512BC1194D07A6007096DB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Blocks.app/Blocks";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/SwifterNoid.app/SwifterNoid";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -385,7 +385,7 @@
 		EE512BC2194D07A6007096DB /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Blocks.app/Blocks";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/SwifterNoid.app/SwifterNoid";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
